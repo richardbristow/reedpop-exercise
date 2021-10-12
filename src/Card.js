@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import magicCardBg from './assets/magic_card_bg.png';
 
 const StyledCard = styled.div`
+  /* Shake animation for the current visible card before is flipped over */
   @keyframes shakeCard {
     0% {
       transform: translate3d(0px, 0, 0);
@@ -30,6 +31,7 @@ const StyledCard = styled.div`
     }
   }
 
+  /* Adds a zoom animation as the card is flipped over */
   @keyframes zoomCard {
     0% {
       transform: scale(1);
@@ -42,6 +44,7 @@ const StyledCard = styled.div`
     }
   }
 
+  /* Adds a glow effect around the border of the visible card */
   @keyframes glowCard {
     from {
       box-shadow: 0 0 90px #ccc;
@@ -94,8 +97,10 @@ const StyledCard = styled.div`
 `;
 
 const Card = ({ cardImage, isActive, className }) => {
+  // State for whether the card has been flipped over or not
   const [isFlipped, setIsFlipped] = useState(false);
 
+  // Handler function to change the flipped state of the card
   const handleFlip = () => setIsFlipped(!isFlipped);
 
   return (

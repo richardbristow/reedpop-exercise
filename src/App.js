@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro';
 
 import Carousel from './Carousel';
-
 import magicAdBg from './assets/magic_ad_bg.jpg';
 
 const StyledApp = styled.div`
@@ -22,6 +21,7 @@ const StyledCardContainer = styled.div`
 const App = () => (
   <StyledApp>
     <StyledCardContainer>
+      {/* Carousel component that displays the cards in series and makes them interactive */}
       <Carousel />
     </StyledCardContainer>
     <img
@@ -29,6 +29,7 @@ const App = () => (
       alt="magic ad background"
       useMap="#ad_background_map"
     />
+    {/* Makes the 'Find out more' section of the image clickable */}
     <map name="ad_background_map">
       <area
         shape="rect"

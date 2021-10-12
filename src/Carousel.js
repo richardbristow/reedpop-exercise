@@ -49,16 +49,19 @@ const StyledCarouselItem = styled.div`
 `;
 
 const Carousel = () => {
+  // This state represents the card currently being displayed in the carousel
+  // with the value being the index of the card in the cards array
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-
   const cards = [magicCard1, magicCard2, magicCard3, magicCard4, magicCard5];
 
+  // Handler function for the next and previous buttons at the sides of the carousel
   const handleChangeActiveCard = (updatedIndex) => {
     if (!(updatedIndex < 0 || updatedIndex > 4)) {
       setActiveCardIndex(updatedIndex);
     }
   };
 
+  // Handler functions to allow the user to swipe through the cards with touch based devices
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => handleChangeActiveCard(activeCardIndex + 1),
     onSwipedRight: () => handleChangeActiveCard(activeCardIndex - 1),
@@ -66,6 +69,7 @@ const Carousel = () => {
 
   return (
     <StyledCarousel>
+      {/* Previous button */}
       <button
         disabled={activeCardIndex === 0}
         onClick={() => handleChangeActiveCard(activeCardIndex - 1)}
@@ -76,9 +80,12 @@ const Carousel = () => {
           </span>
         )}
       </button>
+
+      {/* Container for the current active card */}
       <StyledCarouselInner {...swipeHandlers} activeCardIndex={activeCardIndex}>
         {cards.map((card, index) => (
           <StyledCarouselItem key={card}>
+            {/* Card component to display a card */}
             <Card
               isActive={activeCardIndex === index}
               className="card"
@@ -87,6 +94,8 @@ const Carousel = () => {
           </StyledCarouselItem>
         ))}
       </StyledCarouselInner>
+
+      {/* Next button */}
       <button
         disabled={activeCardIndex === 4}
         className="nextButton"
